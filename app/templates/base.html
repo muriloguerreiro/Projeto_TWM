@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>{% block title %}Kejumu Store{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark d-flex justify-content-between">
+      <div class="container-fluid">
+        <h3 class="text-light">Kejumu Store</h3>
+        <div class="navbar-text">
+          <nav>
+            <ul class="nav nav-pills float-right ">
+              <li role="presentation"><a class="text-light" href="{{ url_for('admin') }}">Admin</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              <li role="presentation" class="active"><a class="text-light" href="{{ url_for('produtos') }}">Produtos</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              <li role="presentation"><a class="text-light" href="{{ url_for('carrinho') }}">Carrinho</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              <li role="presentation"><a class="text-light" href="{{ url_for('perfil') }}">Perfil</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              {% if current_user.is_authenticated %}
+              <li role="presentation"><a class="text-light" href="{{ url_for('logout') }}">Sair</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              {% else %}
+              <li role="presentation"><a class="text-light" href="{{ url_for('login') }}">Login</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </nav>
+
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-warning">
+          <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="content">
+    </div>
+
+    <footer class="footer container-fluid bg-dark py-4 mt-5">
+      <h6 class="text-center text-light">@Kejumu Store - 2019</h6>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for ('static', filename='js/bootstrap.min.js') }}"></script>
+
+  </body>
+</html>
