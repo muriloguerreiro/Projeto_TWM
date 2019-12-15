@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user
 from app import app, db, lm
 from app.models.tables import User, Client
-from app.models.forms import LoginForm, UserForm, ClientForm
+from app.models.forms import LoginForm, UserForm, ClientForm, CategoryForm, ProductForm
 
 
 @lm.user_loader

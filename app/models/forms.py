@@ -17,7 +17,6 @@ class UserForm(FlaskForm):
     password = PasswordField('Password: ', validators=[DataRequired()])
     
 
-
 class ClientForm(FlaskForm):
     user_id = IntegerField('User id: ', validators=[DataRequired()])
     data_nasc = StringField('Data de Nascimento: ', validators=[DataRequired()])
@@ -28,3 +27,14 @@ class ClientForm(FlaskForm):
     rua = StringField('Rua: ', validators=[DataRequired()])
     numero = IntegerField('Numero: ', validators=[DataRequired()])
     complemento = StringField('Complemento: ', validators=[DataRequired()])
+
+
+class CategoryForm(FlaskForm):
+    name_category = StringField('Nome: ', validators=[DataRequired()])
+
+
+class ProductForm(FlaskForm):
+    category_id = IntegerField('Category id: ', validators=[DataRequired()])
+    name_product = StringField('Nome: ', validators=[DataRequired()])
+    desc_product = StringField('Descricao: ', validators=[DataRequired()])
+    preco = IntegerField('Preco: ', validators=[DataRequired()])

@@ -2,6 +2,22 @@
 
 {% block content %}
 
-
+<div class="jumbotron">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-3">Cadastrar Categoria</h2>
+        <form class="mt-3"  action="" method='POST'>
+            {{ form.csrf_token }}
+            
+            <div class="form-group">
+                <div class="row col-md-8">
+                    <label>Nome da Categoria</label>
+                    {{ form.name_category(class="form-control", placeholder="Insira o nome da categoria...") }}
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-dark btn-success">Cadastrar</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

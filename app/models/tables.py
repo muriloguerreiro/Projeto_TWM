@@ -68,3 +68,39 @@ class Client(db.Model):
         self.rua = rua
         self.numero = numero
         self.complemento = complemento
+
+
+class Category(db.Model):
+    __tablename__ = "categories"
+
+    id_category = db.Column(db.Integer, primary_key=True)
+    name_category = db.Column(db.String, unique=True)
+    #products = db.relationship('Product', order_by="Product.id_product")
+    products = db.relationship('Product', backref='categories', lazy=True)
+
+    def get_id(self):
+        return str(self.id_category)
+
+    def __init__(self, name_category):
+        self.name_category = name_category
+
+
+class Product(db.Model):
+    __tablename__ = "products"
+
+    id_product = db.Column(db.Integer, primary_key=True)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id_category"), nullable=False)
+    name_product = db.Column(db.String, unique=True)
+    desc_product = db.Column(db.String)
+    preco = db.Column(db.Integer)
+
+    def get_id(self):
+        return str(self.id_product)
+
+    def __init__(self, category_id, name_product, desc_product, preco):
+        self.category_id = category_id
+        self.name_product = name_product
+        self.desc_product = desc_product
+        self.preco = preco
+
+
